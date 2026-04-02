@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Parnkuti — Back to Nature</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --brown: #5c3d2e;
+  --brown-light: #8b6347;
+  --cream: #fdf6ec;
+  --green: #4a7c59;
+  --green-light: #7ab893;
+  --green-pale: #e8f5ee;
+  --orange: #d4732a;
+  --text: #2c1810;
+  --text-light: #7a5c4a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'DM Sans', sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* NAV */
+nav {
+  position:fixed; top:0; width:100%; z-index:100;
+  padding:18px 6vw;
+  display:flex; justify-content:space-between; align-items:center;
+  background:rgba(253,246,236,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid #e8d5c0;
+}
+.nav-logo {
+  font-family:'Playfair Display', serif;
+  font-size:1.5rem; font-weight:700;
+  color:var(--brown);
+  letter-spacing:1px;
+  display:flex; align-items:center; gap:8px;
+}
+.nav-links { display:flex; gap:32px; }
+.nav-links a {
+  color:var(--text-light); text-decoration:none;
+  font-size:0.85rem; font-weight:500; letter-spacing:0.5px;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--brown); }
+.nav-cta {
+  padding:10px 24px;
+  background:var(--brown);
+  color:#fff; text-decoration:none;
+  font-size:0.8rem; font-weight:500;
+  border-radius:100px;
+  transition:all 0.3s;
+}
+.nav-cta:hover { background:var(--orange); transform:translateY(-1px); }
+
+/* HERO */
+#hero {
+  min-height:100vh;
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:100px 6vw 60px;
+  gap:60px;
+  background: radial-gradient(ellipse at 70% 50%, #e8f5ee 0%, var(--cream) 60%);
+  position:relative; overflow:hidden;
+}
+#hero::before {
+  content:''; position:absolute;
+  width:600px; height:600px;
+  background:radial-gradient(circle, #c8e6d4 0%, transparent 70%);
+  right:-200px; top:-100px;
+  border-radius:50%;
+}
+.hero-leaf {
+  position:absolute; font-size:8rem; opacity:0.06;
+  animation:float 6s ease-in-out infinite;
+}
+.hero-leaf:nth-child(1) { top:15%; left:45%; animation-delay:0s; }
+.hero-leaf:nth-child(2) { top:60%; left:48%; animation-delay:2s; font-size:5rem; }
+.hero-leaf:nth-child(3) { top:80%; left:42%; animation-delay:4s; font-size:6rem; }
+@keyframes float { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-20px) rotate(5deg)} }
+
+.hero-text { position:relative; z-index:2; }
+.hero-tag {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 14px;
+  background:var(--green-pale); border:1px solid #c8e6d4;
+  border-radius:100px;
+  font-size:0.72rem; font-weight:500; color:var(--green);
+  letter-spacing:1px; text-transform:uppercase;
+  margin-bottom:24px;
+  animation:fadeUp 0.6s ease 0.2s both;
+}
+h1 {
+  font-family:'Playfair Display', serif;
+  font-size:clamp(2.8rem, 5vw, 4.5rem);
+  line-height:1.1; font-weight:700;
+  color:var(--brown);
+  margin-bottom:20px;
+  animation:fadeUp 0.6s ease 0.4s both;
+}
+h1 em { font-style:italic; color:var(--green); }
+.hero-desc {
+  font-size:1rem; line-height:1.8;
+  color:var(--text-light); max-width:460px;
+  margin-bottom:36px;
+  animation:fadeUp 0.6s ease 0.6s both;
+}
+.hero-btns {
+  display:flex; gap:16px; flex-wrap:wrap;
+  animation:fadeUp 0.6s ease 0.8s both;
+}
+.btn-primary {
+  padding:14px 32px;
+  background:var(--brown); color:#fff;
+  text-decoration:none; border-radius:100px;
+  font-size:0.85rem; font-weight:500;
+  transition:all 0.3s;
+  box-shadow:0 4px 20px rgba(92,61,46,0.25);
+}
+.btn-primary:hover { background:var(--orange); transform:translateY(-2px); box-shadow:0 8px 30px rgba(212,115,42,0.3); }
+.btn-outline {
+  padding:14px 32px;
+  border:2px solid var(--brown); color:var(--brown);
+  text-decoration:none; border-radius:100px;
+  font-size:0.85rem; font-weight:500;
+  transition:all 0.3s;
+}
+.btn-outline:hover { background:var(--brown); color:#fff; }
+
+.hero-visual {
+  position:relative; z-index:2;
+  animation:fadeUp 0.6s ease 0.5s both;
+}
+.hero-card-main {
+  background:#fff;
+  border-radius:24px;
+  padding:32px;
+  box-shadow:0 20px 60px rgba(92,61,46,0.12);
+  position:relative;
+}
+.hero-card-main img { display:none; }
+.nature-illustration {
+  width:100%; height:320px;
+  background:linear-gradient(135deg, #c8e6d4 0%, #a8d5b8 40%, #7ab893 70%, #4a7c59 100%);
+  border-radius:16px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:6rem; position:relative; overflow:hidden;
+}
+.nature-illustration::before {
+  content:'';
+  position:absolute; bottom:0; left:0; right:0; height:40%;
+  background:linear-gradient(0deg, rgba(74,124,89,0.6), transparent);
+}
+.nature-trees { font-size:4rem; position:relative; z-index:1; letter-spacing:8px; }
+.hero-badge {
+  position:absolute; top:-16px; right:24px;
+  background:var(--orange); color:#fff;
+  padding:8px 18px; border-radius:100px;
+  font-size:0.72rem; font-weight:500;
+  box-shadow:0 4px 16px rgba(212,115,42,0.4);
+}
+.hero-stats {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:12px; margin-top:20px;
+}
+.stat { text-align:center; padding:12px; background:var(--green-pale); border-radius:12px; }
+.stat .num { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--brown); }
+.stat .lbl { font-size:0.65rem; color:var(--text-light); margin-top:2px; }
+
+/* ABOUT */
+#about {
+  padding:100px 6vw;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:80px; align-items:center;
+}
+.about-img {
+  background:linear-gradient(135deg, #e8f5ee, #c8e6d4);
+  border-radius:24px; height:420px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:8rem; position:relative;
+  box-shadow:0 20px 60px rgba(74,124,89,0.15);
+}
+.about-img::after {
+  content:''; position:absolute;
+  width:80%; height:80%;
+  border:2px solid rgba(74,124,89,0.2);
+  border-radius:16px; top:10%; left:10%;
+}
+.about-tag { display:inline-block; padding:6px 16px; background:var(--green-pale); border-radius:100px; font-size:0.72rem; color:var(--green); font-weight:500; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; }
+.about-text h2 { font-family:'Playfair Display',serif; font-size:2.4rem; line-height:1.2; color:var(--brown); margin-bottom:20px; }
+.about-text p { font-size:0.95rem; line-height:1.9; color:var(--text-light); margin-bottom:16px; }
+.about-features { display:flex; flex-direction:column; gap:12px; margin-top:24px; }
+.feat-row { display:flex; align-items:center; gap:12px; }
+.feat-icon { width:36px; height:36px; background:var(--green-pale); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.feat-text { font-size:0.85rem; color:var(--text-light); }
+
+/* PRODUCTS */
+#products { padding:100px 6vw; background:var(--green-pale); }
+.section-header { text-align:center; margin-bottom:56px; }
+.section-tag { display:inline-block; padding:6px 16px; background:#fff; border-radius:100px; font-size:0.72rem; color:var(--green); font-weight:500; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; border:1px solid #c8e6d4; }
+.section-title { font-family:'Playfair Display',serif; font-size:2.4rem; color:var(--brown); }
+.products-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:24px; }
+.product-card {
+  background:#fff; border-radius:20px; overflow:hidden;
+  box-shadow:0 4px 20px rgba(92,61,46,0.08);
+  transition:all 0.3s;
+}
+.product-card:hover { transform:translateY(-6px); box-shadow:0 20px 40px rgba(92,61,46,0.15); }
+.product-img {
+  height:200px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:4rem;
+}
+.product-img.p1 { background:linear-gradient(135deg,#fef3e2,#fde8c0); }
+.product-img.p2 { background:linear-gradient(135deg,#e8f5ee,#c8e6d4); }
+.product-img.p3 { background:linear-gradient(135deg,#fff0e8,#ffd8c0); }
+.product-img.p4 { background:linear-gradient(135deg,#f0e8ff,#dcc8f0); }
+.product-info { padding:20px; }
+.product-name { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--brown); margin-bottom:6px; }
+.product-desc { font-size:0.8rem; color:var(--text-light); line-height:1.6; margin-bottom:14px; }
+.product-price { font-size:1rem; font-weight:500; color:var(--orange); }
+.product-btn {
+  display:block; text-align:center; margin-top:12px;
+  padding:10px; background:var(--brown); color:#fff;
+  text-decoration:none; border-radius:100px;
+  font-size:0.78rem; font-weight:500;
+  transition:all 0.2s;
+}
+.product-btn:hover { background:var(--orange); }
+
+/* VALUES */
+#values { padding:100px 6vw; }
+.values-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:24px; margin-top:56px; }
+.value-card {
+  padding:32px 24px; border:1px solid #e8d5c0;
+  border-radius:20px; transition:all 0.3s;
+  position:relative; overflow:hidden;
+}
+.value-card::before {
+  content:''; position:absolute;
+  inset:0; background:linear-gradient(135deg, var(--green-pale), transparent);
+  opacity:0; transition:opacity 0.3s;
+}
+.value-card:hover::before { opacity:1; }
+.value-card:hover { border-color:var(--green-light); transform:translateY(-4px); }
+.value-icon { font-size:2.5rem; margin-bottom:16px; }
+.value-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--brown); margin-bottom:8px; }
+.value-desc { font-size:0.82rem; color:var(--text-light); line-height:1.7; }
+
+/* CONTACT */
+#contact {
+  padding:100px 6vw;
+  background:linear-gradient(135deg, var(--brown) 0%, #3d2518 100%);
+  color:#fff;
+  text-align:center;
+}
+#contact h2 { font-family:'Playfair Display',serif; font-size:2.8rem; color:#fdf6ec; margin-bottom:16px; }
+#contact p { color:rgba(253,246,236,0.7); font-size:1rem; margin-bottom:40px; }
+.contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:700px; margin:0 auto 40px; }
+.contact-item { padding:20px; background:rgba(255,255,255,0.08); border-radius:16px; border:1px solid rgba(255,255,255,0.1); }
+.contact-item .icon { font-size:1.5rem; margin-bottom:8px; }
+.contact-item .val { font-size:0.82rem; color:rgba(253,246,236,0.8); }
+.contact-btn { display:inline-block; padding:16px 40px; background:var(--orange); color:#fff; text-decoration:none; border-radius:100px; font-size:0.9rem; font-weight:500; transition:all 0.3s; box-shadow:0 4px 20px rgba(212,115,42,0.4); }
+.contact-btn:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(212,115,42,0.5); }
+
+/* FOOTER */
+footer { background:#2c1810; padding:24px 6vw; display:flex; justify-content:space-between; align-items:center; }
+.footer-logo { font-family:'Playfair Display',serif; font-size:1.2rem; color:var(--cream); }
+.footer-copy { font-size:0.75rem; color:rgba(253,246,236,0.4); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+.reveal { opacity:0; transform:translateY(30px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* MOBILE */
+@media(max-width:768px) {
+  #hero { grid-template-columns:1fr; padding:100px 5vw 60px; }
+  #about { grid-template-columns:1fr; gap:40px; }
+  .contact-grid { grid-template-columns:1fr; }
+  .nav-links { display:none; }
+  footer { flex-direction:column; gap:8px; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🌿 Parnkuti</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#values">Values</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="nav-cta">Visit Us</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-leaf">🍃</span>
+  <span class="hero-leaf">🌿</span>
+  <span class="hero-leaf">🍂</span>
+
+  <div class="hero-text">
+    <div class="hero-tag">🌱 100% Natural & Eco-Friendly</div>
+    <h1>Welcome to<br/><em>Parnkuti</em><br/>Back to Nature</h1>
+    <p class="hero-desc">Discover the beauty of nature through our handcrafted, sustainable products. From the heart of the forest to your doorstep — pure, natural, and ethically sourced.</p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Explore Products</a>
+      <a href="#about" class="btn-outline">Our Story</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="hero-badge">✨ Eco Certified</div>
+      <div class="nature-illustration">
+        <div class="nature-trees">🌲🌿🌲</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">100%</div><div class="lbl">Natural</div></div>
+        <div class="stat"><div class="num">50+</div><div class="lbl">Products</div></div>
+        <div class="stat"><div class="num">🌍</div><div class="lbl">Sustainable</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img reveal">🌳</div>
+  <div class="about-text reveal">
+    <span class="about-tag">Our Story</span>
+    <h2>Rooted in Nature,<br/>Crafted with Love</h2>
+    <p>Parnkuti was born from a simple belief — that nature holds everything we need. Our journey began with a deep respect for the environment and a desire to bring authentic, natural products to every home.</p>
+    <p>Every product we offer is carefully handcrafted using sustainably sourced materials, keeping traditional methods alive while embracing modern sustainability practices.</p>
+    <div class="about-features">
+      <div class="feat-row"><div class="feat-icon">🌿</div><div class="feat-text">100% natural and organic ingredients</div></div>
+      <div class="feat-row"><div class="feat-icon">♻️</div><div class="feat-text">Zero waste, eco-friendly packaging</div></div>
+      <div class="feat-row"><div class="feat-icon">🤝</div><div class="feat-text">Supporting local artisans and farmers</div></div>
+      <div class="feat-row"><div class="feat-icon">💚</div><div class="feat-text">Giving back to forest communities</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="section-header reveal">
+    <div class="section-tag">Our Collection</div>
+    <h2 class="section-title">Nature's Best, For You</h2>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal">
+      <div class="product-img p1">🍯</div>
+      <div class="product-info">
+        <div class="product-name">Wild Forest Honey</div>
+        <div class="product-desc">Pure, unprocessed honey collected from wild forest beehives. Rich in antioxidants and natural enzymes.</div>
+        <div class="product-price">₹320 / 500g</div>
+        <a href="#contact" class="product-btn">Order Now</a>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-img p2">🌿</div>
+      <div class="product-info">
+        <div class="product-name">Herbal Leaf Tea</div>
+        <div class="product-desc">Hand-picked medicinal herbs blended for wellness. Tulsi, ginger, and forest herbs in every sip.</div>
+        <div class="product-price">₹180 / 100g</div>
+        <a href="#contact" class="product-btn">Order Now</a>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-img p3">🪵</div>
+      <div class="product-info">
+        <div class="product-name">Handcrafted Woodware</div>
+        <div class="product-desc">Beautifully crafted wooden bowls, spoons, and decor items made by local artisans.</div>
+        <div class="product-price">₹450 onwards</div>
+        <a href="#contact" class="product-btn">Order Now</a>
+      </div>
+    </div>
+    <div class="product-card reveal">
+      <div class="product-img p4">🌸</div>
+      <div class="product-info">
+        <div class="product-name">Natural Skincare</div>
+        <div class="product-desc">Chemical-free skincare made from forest herbs, essential oils, and natural butters.</div>
+        <div class="product-price">₹280 / piece</div>
+        <a href="#contact" class="product-btn">Order Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="section-header reveal">
+    <div class="section-tag">Why Parnkuti</div>
+    <h2 class="section-title">Our Core Values</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card reveal">
+      <div class="value-icon">🌱</div>
+      <div class="value-title">Sustainability</div>
+      <div class="value-desc">Every product is made with the planet in mind. We use renewable resources and zero-waste processes.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon">💯</div>
+      <div class="value-title">Authenticity</div>
+      <div class="value-desc">No shortcuts, no chemicals. Only genuine, pure products straight from nature's lap.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon">🫂</div>
+      <div class="value-title">Community</div>
+      <div class="value-desc">We empower local farmers, artisans, and forest communities by providing fair trade partnerships.</div>
+    </div>
+    <div class="value-card reveal">
+      <div class="value-icon">🌍</div>
+      <div class="value-title">Responsibility</div>
+      <div class="value-desc">A portion of every purchase goes towards reforestation and environmental conservation efforts.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="reveal">Get In Touch</h2>
+  <p class="reveal">Visit us or reach out — we'd love to connect with you!</p>
+  <div class="contact-grid reveal">
+    <div class="contact-item"><div class="icon">📍</div><div class="val">Shirpur, Maharashtra</div></div>
+    <div class="contact-item"><div class="icon">📞</div><div class="val">+91 9422704621</div></div>
+    <div class="contact-item"><div class="icon">✉️</div><div class="val">tantrathestart@gmail.com</div></div>
+  </div>
+  <a href="mailto:tantrathestart@gmail.com" class="contact-btn reveal">Send a Message 🌿</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🌿 Parnkuti</div>
+  <div class="footer-copy">© 2025 Parnkuti. Developed by Himani Magar — Tantra Internship Project</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
